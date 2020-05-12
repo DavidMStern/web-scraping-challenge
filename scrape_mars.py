@@ -16,10 +16,9 @@ def scrape_nasa_news():
     url = 'https://mars.nasa.gov/news'
     response = requests.get(url)
     soup = bs(response.text, 'html.parser')
-    #result = soup.find('li', class_='slide')
     result = soup.find('div', class_='slide')
+
     # extract the most recent news title and content
-    #news_title = result.find('li', class_="content_title").find('a').text
     news_title = result.find('div', class_="content_title").find('a').text.strip()
     news_pargrph = result.a.text.strip()
     news["news_title"] = news_title
@@ -47,6 +46,7 @@ def scrape_latest_tweet():
 
 def scrape_mars_facts():
     url = 'http://space-facts.com/mars/'
+    
     # use pandas 'read_html' to parse the url
     tables = pd.read_html(url)
     df = tables[0]
