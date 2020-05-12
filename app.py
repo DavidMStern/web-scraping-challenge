@@ -1,6 +1,3 @@
-# In[ ]:
-
-
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
@@ -35,16 +32,3 @@ def scrape():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-

@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 # import dependencies
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
@@ -11,19 +5,11 @@ import pandas as pd
 import requests
 import time
 
-
-# In[3]:
-
-
 def init_browser():
     # use splinter to start Chromedriver
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    executable_path = {'executable_path': 'chromedriver.exe'}
     return Browser('chrome', **executable_path, headless=False)
 init_browser()
-
-
-# In[5]:
-
 
 def scrape_nasa_news():
     news = {}
@@ -40,10 +26,6 @@ def scrape_nasa_news():
     news["news_pargrph"] = news_pargrph
     return news
 
-
-# In[6]:
-
-
 def scrape_featured_image():
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     base_url = "https://jpl.nasa.gov"
@@ -55,10 +37,6 @@ def scrape_featured_image():
     featured_image_url = base_url + article.a['data-fancybox-href']
     return featured_image_url
 
-
-# In[7]:
-
-
 def scrape_latest_tweet():
     url = "https://twitter.com/marswxreport?lang=en"
     response = requests.get(url)
@@ -66,10 +44,6 @@ def scrape_latest_tweet():
     
     mars_weather = soup.find_all("p", class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")[0].text
     return mars_weather
-
-
-# In[8]:
-
 
 def scrape_mars_facts():
     url = 'http://space-facts.com/mars/'
@@ -94,9 +68,6 @@ def scrape_hemispheres():
         
     hemispheres = ['Cerberus', 'Schiaparelli', 'Syrtis Major', 'Valles Marineris']
     return hemispheres
-
-# In[10]:
-
 
 def scrape_hemisphere_info():
     hemispheres = scrape_hemispheres()
@@ -131,10 +102,6 @@ def scrape_hemisphere_info():
     browser.quit()
     return hemisphere_info
 
-
-# In[11]:
-
-
 def scrape():
     mars_facts = {}
     mars_facts["news_title"] = scrape_nasa_news()["news_title"]
@@ -145,10 +112,3 @@ def scrape():
     mars_facts["hemisphere_info"] = scrape_hemisphere_info()
      # return dictionary
     return mars_facts
-
-
-# In[ ]:
-
-
-
-
